@@ -1,0 +1,138 @@
+body::-webkit-scrollbar {
+  width: 0px;
+}
+
+body{
+  padding: 65px;
+  overflow-y: scroll;
+}
+
+.storycontainer {
+  /* width:75%; */
+  background-color: #fff;
+  color: black;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 200px;
+  margin-right: 200px;
+  border-radius: 100px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.3);
+  padding: 50px;
+}
+
+/* .maincontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+} */
+
+/* .control {
+  background-color: #333;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  color: white;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+} */
+
+.controlscontainer {
+  background-color: #333;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  color: white;
+  z-index: 100;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.currentNumber {
+  width: 50px;
+  align-items: center;
+  display: flex;
+  /* flex-direction: row; */
+  justify-content: space-around;
+}
+
+.nav {
+  background: #333;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  justify-content: space-around;
+}
+
+.search {
+  margin-left: 5px;
+}
+
+.goto {
+  margin-right: 5px;
+}
+
+.buttons {
+  background-color: #333;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: inherit;
+}
+
+.button {
+  background-color: #333;
+  color: #fff;
+}
+
+.resultbox {
+  background-color: #c2bebe;
+  color: black;
+  width: 169px;
+  height: 76px;
+  margin-left: 5px;
+  margin-bottom: 94px;
+  z-index: 101;
+  position: fixed;
+  overflow: scroll;
+}
+
+.singleresult {
+  margin: 5px;
+  border-width: 2px;
+}
+
+/* .nav > img {
+  width: 60px;
+  margin-top: 10px;
+} */
+
+/* ul {
+  list-style: none;
+  color: white;
+  display: flex;
+  margin-right: 10px;
+}
+
+ul > li {
+  margin: 2px;
+} */
