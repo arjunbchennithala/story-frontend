@@ -1,26 +1,20 @@
 import ResultList from './ResultList';
 import { useState, useMemo } from 'react';
 
-const Control = ({next, prev, goto, search, stories, count}) => {
+const Control = ({next, prev, goto, stories, count}) => {
   const [formValues, setFormValues] = useState({query: "", goto: ""});
+
   const searchResults = useMemo(()=>{
     const text = formValues.query.toLowerCase();
 
+    if(text === "") //Checking for cleared inputbox
+      return [];
+
     const result = stories.filter((story)=>{
-      return story.title.toLowerCase().includes(text);
+      return story.title.toLowerCase().includes(text);  //(story.title.toLowerCase().search(text) > -1);  
     });
-    console.group("searchResults : Typeof " + typeof result.index);
      return result;
   }, [formValues.query])
-
-  //console.log("searchResults : " + searchResults);
-  // const [results, setResults] = useState([]);
-
-  // function searchProcess(val) {
-  //   search(formValues.query, setResults);
-  //   if(val)
-  //     setFormValues((previousVal)=>({...previousVal, query: "", }));
-  // }
 
   function handleResultClick(index) {
     goto(index+1);
@@ -36,15 +30,12 @@ const Control = ({next, prev, goto, search, stories, count}) => {
     setFormValues((previousVal)=>({...previousVal, [event.target.name]: event.target.value, }));
   }
 
-  console.log(formValues.query, searchResults);
-
   return (
     <div className='controlscontainer'>
       {searchResults.length > 0 && <ResultList results={searchResults} clicked={handleResultClick}/>}
 
       <div className="search">
         <input type="search" name="query" id="query" placeholder="Search for a story" value={formValues.query} onChange={(e)=>{handleChange(e)}}/>
-        {/* <button onClick={()=>{searchProcess(true)}}>Search</button> */}
       </div>
       <div className="buttons">
         <button onClick={prev} className='button'>{'<<<'}</button>

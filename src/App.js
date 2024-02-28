@@ -8,9 +8,6 @@ function App() {
   const [storyNum, setStoryNum] = useState(0);
   const [stories, setStories] = useState([]);
   const [totalNum, setTotalNum] = useState(0);
-  //const [convertedStories, setConvertedStories] = useState([]);
-
-  // var convertedStories = [];
 
   function nextStory() {
     if (totalNum > storyNum) {
@@ -35,39 +32,15 @@ function App() {
     console.log("Goto : "+num);
   }
 
-  // useEffect(()=>{
-  //   convertedStories = stories.map(story=>story.title.toLowerCase());
-  // }, [stories])
-
-  function search(text, setResults) {
-    console.log("Searched for : " + text);
-    if(text === ""){
-      console.log("Empty reached");
-      //setResults(()=>([]));
-    }
-    //var convertedStories = stories?.map(story=>story.title.toLowerCase());
-
-    var result = stories.filter((story)=>((story.title.search(text) > -1)&&story));
-    // var result2 = result.map(oneresult=>({title:oneresult.title, id:}));
-
-    var resultsToReturn = [];
-
-    for(var i=0; i<result.length; i++) {
-      resultsToReturn.push({index: i, title: result[i].title});
-      // console.log("Index : " + resultsToReturn[i].index);
-    }
-    setResults(result);
-  }
-
   async function getStories() {
     const response = await fetch(
-      "https://shortstories-api.onrender.com/stories"
+      "http://localhost:4000/"
     );
     const stories = await response.json();
-    console.log("Typof stories from api : " +  stories.length)
+    console.log("Stories : ", stories);
+    setStories(stories);
+    console.log("Lengthof stories from api : " +  stories.length)
     setTotalNum(() => Object.keys(stories).length);
-    console.group("Stories from root : " +  stories.length);
-    setStories(stories.map((story, index)=>({...story, index})));
     console.group("Stories from root2 : " + stories[100].index)
   }
   useEffect(() => {
@@ -82,7 +55,6 @@ function App() {
         next={nextStory}
         prev={previousStory}
         goto={gotoStory}
-        search={search}
         stories={stories}
         count={{
           currentStory: totalNum > 0 ? storyNum + 1 : storyNum,
