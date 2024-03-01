@@ -1,6 +1,10 @@
 import ResultList from './ResultList';
 import { useState, useMemo } from 'react';
-import { BottomNavigation, Paper, TextField } from '@mui/material';
+import { TextField, Paper, Typography } from '@mui/material';
+import { Button } from '@mui/base';
+
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Control = ({next, prev, goto, stories, count}) => {
   const [formValues, setFormValues] = useState({query: "", goto: ""});
@@ -31,29 +35,34 @@ const Control = ({next, prev, goto, stories, count}) => {
     setFormValues((previousVal)=>({...previousVal, [event.target.name]: event.target.value, }));
   }
 
+  function onkeydown(e) {
+    if(e.key === "Enter") {
+      gotoProcess();
+      e.target.blur();
+    }
+  }
+
   return (
-    <BottomNavigation sx={{
+    <Paper sx={{
       position: "fixed",
       bottom: "0",
       left: "0",
-      right: "0"
-    }} >
+      right: "0",
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: "5px"
+    }} elevation={2}>
       {searchResults.length > 0 && <ResultList results={searchResults} clicked={handleResultClick}/>}
 
-      <div className="search">
-        <input type="search" name="query" id="query" placeholder="Search for a story" value={formValues.query} onChange={(e)=>{handleChange(e)}}/>
-      </div>
-      <TextField onChange={(e)=>{handleChange(e)}} name="query" />
-      <div className="buttons">
-        <button onClick={prev} className='button'>{'<<<'}</button>
-        <h6 className='currentNumber'>{count.currentStory}/{count.totalNumStory}</h6>
-        <button onClick={next} className='button'>{'>>>'}</button>
-      </div>
-      <div className="goto">
-        <input type="number" name="goto" id="storyNumber" placeholder='GoTo #' value={formValues.goto} onChange={(e)=>{handleChange(e)}} />
-        <button onClick={()=>{gotoProcess()}}>GoTo</button>
-      </div>
-    </BottomNavigation>
+      <TextField onChange={(event)=>{handleChange(event)}}  name="query" label="Search for a story" type="search" value={formValues.query}/>
+      <Button onClick={prev}> <ArrowBackIcon /> </Button>
+      <Typography variant="h6" >{count.currentStory}/{count.totalNumStory}</Typography>
+      <Button onClick={next}> <ArrowForwardIcon /> </Button>
+
+      <TextField onChange={(event)=>{handleChange(event)}}  name="goto" label="GoTo #" type="number" value={formValues.goto} onKeyDown={(e)=>{onkeydown(e)}}/>
+    </Paper>
   )
 }
 

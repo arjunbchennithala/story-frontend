@@ -109,7 +109,7 @@ function App() {
   const [totalNum, setTotalNum] = useState(0);
 
   function nextStory() {
-    if (totalNum > storyNum) {
+    if (totalNum-1 > storyNum) {
       setStoryNum(() => storyNum + 1);
     }
   }
