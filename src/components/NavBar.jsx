@@ -1,11 +1,15 @@
-import React from 'react'
+
+import { AppBar, Toolbar, Typography } from "@mui/material";
 
 const NavBar = () => {
-  return (
-    <div className="nav">
-        <h2>Story Book</h2>
-    </div>
-  )
-}
 
-export default NavBar
+  return (
+    <AppBar position="fixed">
+      <Toolbar>
+        <Typography variant="h6">Story Book</Typography>
+      </Toolbar>
+    </AppBar>
+  );
+};
+
+export default NavBar;

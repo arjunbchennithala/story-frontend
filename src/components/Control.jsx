@@ -1,5 +1,6 @@
 import ResultList from './ResultList';
 import { useState, useMemo } from 'react';
+import { BottomNavigation, Paper, TextField } from '@mui/material';
 
 const Control = ({next, prev, goto, stories, count}) => {
   const [formValues, setFormValues] = useState({query: "", goto: ""});
@@ -31,12 +32,18 @@ const Control = ({next, prev, goto, stories, count}) => {
   }
 
   return (
-    <div className='controlscontainer'>
+    <BottomNavigation sx={{
+      position: "fixed",
+      bottom: "0",
+      left: "0",
+      right: "0"
+    }} >
       {searchResults.length > 0 && <ResultList results={searchResults} clicked={handleResultClick}/>}
 
       <div className="search">
         <input type="search" name="query" id="query" placeholder="Search for a story" value={formValues.query} onChange={(e)=>{handleChange(e)}}/>
       </div>
+      <TextField onChange={(e)=>{handleChange(e)}} name="query" />
       <div className="buttons">
         <button onClick={prev} className='button'>{'<<<'}</button>
         <h6 className='currentNumber'>{count.currentStory}/{count.totalNumStory}</h6>
@@ -46,7 +53,7 @@ const Control = ({next, prev, goto, stories, count}) => {
         <input type="number" name="goto" id="storyNumber" placeholder='GoTo #' value={formValues.goto} onChange={(e)=>{handleChange(e)}} />
         <button onClick={()=>{gotoProcess()}}>GoTo</button>
       </div>
-    </div>
+    </BottomNavigation>
   )
 }
 

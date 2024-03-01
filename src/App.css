@@ -46,7 +46,7 @@ body{
   justify-content: center;
 } */
 
-.controlscontainer {
+/* .controlscontainer {
   background-color: #333;
   width: 100%;
   position: fixed;
@@ -65,9 +65,9 @@ body{
   width: 50px;
   align-items: center;
   display: flex;
-  /* flex-direction: row; */
+  /* flex-direction: row; 
   justify-content: space-around;
-}
+} */
 
 .nav {
   background: #333;
@@ -82,7 +82,7 @@ body{
   justify-content: space-around;
 }
 
-.search {
+/* .search {
   margin-left: 5px;
 }
 
@@ -102,7 +102,7 @@ body{
 .button {
   background-color: #333;
   color: #fff;
-}
+} */
 
 .resultbox {
   background-color: #c2bebe;
@@ -117,7 +117,9 @@ body{
 }
 
 .singleresult {
-  margin: 5px;
+  margin-top: -14px;
+  margin-left: 5px;
+  margin-bottom: -14px;
   border-width: 2px;
 }
 
