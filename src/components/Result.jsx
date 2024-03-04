@@ -1,9 +1,19 @@
-const Result = ({result, clicked}) => {
-  
+import { useDispatch} from "react-redux";
+import { setCurrentStory, setSearchQuery } from "../slice";
+import { ListItemButton, ListItemText } from "@mui/material";
+
+
+const Result = ({result}) => {
+  function selectNewStory() {
+    dispatch(setCurrentStory(result.index));
+    dispatch(setSearchQuery(""));
+  }
+  const dispatch = useDispatch();
   return (
-    <div className="singleresult" onClick={()=>clicked(result?.index)}>
-        <h6>{result?.title}</h6>
-    </div>
+    <ListItemButton onClick={selectNewStory} >
+       <ListItemText primary={result?.title} />
+    </ListItemButton>
+
   )
 }
 
